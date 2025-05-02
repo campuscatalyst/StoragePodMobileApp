@@ -5,6 +5,7 @@ export default function DevicesLayout() {
     <Stack
       screenOptions={{
         headerShown: false,
+        animation: "fade"
       }}
     >
       <Stack.Screen name="myDevices" />

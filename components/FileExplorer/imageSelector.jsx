@@ -6,11 +6,11 @@ import axios from "axios";
 import { Image } from "~/lib/icons";
 import { baseURl } from "~/lib/constants";
 import { Text } from "~/components/ui/text";
-import { useFileUploadStore } from "~/lib/store/fileUploadStore";
+import { useFileExplorerStore } from "~/lib/store/fileExplorerStore";
 //const remoteFolder = "/srv/dev-disk-by-uuid-09698ee9-3b6f-4504-b43d-d7b527129ac9/Folder1";
 
 export default function ImageSelector({ closeSheet, openFileUploadProgressSheet }) {
-  const setImages = useFileUploadStore((state) => state.setImages);
+  const setImages = useFileExplorerStore((state) => state.setImages);
 
   const pressHandler = async () => {
     const permissionResult = await ImagePicker.getMediaLibraryPermissionsAsync();

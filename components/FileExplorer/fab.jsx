@@ -1,8 +1,11 @@
 import { View, Pressable } from "react-native";
 import { Text } from "~/components/ui/text";
 import { Plus } from "lucide-react-native";
+import { useNavigation } from "expo-router";
 
 export default function Fab({ openSheet }) {
+  const navigation = useNavigation();
+  console.error(navigation.getState());
   const toggleFab = () => {
     openSheet(); //this is to present the sheet.
   };

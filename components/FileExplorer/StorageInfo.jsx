@@ -1,39 +1,24 @@
-import { Pressable, View } from "react-native";
+import { Platform, Pressable, View } from "react-native";
 import { Text } from "~/components/ui/text";
-import { Progress } from "~/components/ui/progress";
-import { Image, File, Video, Music } from "~/lib/icons";
-import { Settings } from "~/lib/icons";
+import StorageGraph from "./graphs/storageGraph";
 
-export default function StorageInfo({ openStorageSettings }) {
+export default function StorageInfo({ openStorageSettings, openFileBrowser }) {
+  const used = 120 //GB
+  const total = 1200 //GB
+  const percentageUsed = (used / total ) * 100;
   return (
-    <View className="h-56 p-4 rounded-3xl bg-card flex justify-between">
-      <View className="flex flex-row justify-between items-center">
-        <Text className="font-bold text-2xl">Storage</Text>
-        <Pressable onPress={() => openStorageSettings()}>
-          <Settings className="text-foreground" />
+    <View className="h-48 p-4 rounded-3xl bg-card shadow-sm flex flex-row justify-between" style={{ elevation: Platform.select({ ios: 0, android: 5 }) }}>
+      <View className="flex justify-between">
+        <Text className="font-bold">Storage</Text>
+        <View>
+          <Text className="text-xl font-semibold">{used} GB / {total} GB used</Text>
+          <Text>Available storage</Text>
+        </View>
+        <Pressable className="p-3 rounded-xl bg-primary w-36 flex justify-center items-center" onPress={() => openFileBrowser()}>
+          <Text className="text-primary-foreground">View details</Text>
         </Pressable>
       </View>
-
-      <Text>10 GB of 1 TB used</Text>
-      <Progress value={10} className="bg-background" indicatorClassName="bg-primary" />
-      <View className="flex flex-row justify-around items-center">
-        <View className="flex gap-y-2 items-center">
-          <Image size={30} className="text-yellow" />
-          <Text>24</Text>
-        </View>
-        <View className="flex gap-y-2 items-center">
-          <Video size={30} className="text-purple" />
-          <Text>100</Text>
-        </View>
-        <View className="flex gap-y-2 items-center">
-          <File size={30} className="text-primary" />
-          <Text>1.2k</Text>
-        </View>
-        <View className="flex gap-y-2 items-center">
-          <Music size={30} className="text-teal" />
-          <Text>800</Text>
-        </View>
-      </View>
+      <StorageGraph progress={percentageUsed} />
     </View>
   );
 }

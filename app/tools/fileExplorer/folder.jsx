@@ -6,14 +6,8 @@ import { useNavigationStore } from "~/lib/store";
 import { ChevronLeft } from "~/lib/icons";
 import { useGetFileListQuery } from "~/lib/services/queries/getFileListQuery";
 import FilesList from "~/components/FileExplorer/filesList";
-
-const geTitle = (data) => {
-  return data?.length ? data[data.length - 1] : null;
-}
-
-const getPath = (data) => {
-  return data?.length ? data.join("/") : null;
-}
+import LottieView from "lottie-react-native";
+import { getPath, getFolderTitle } from "~/lib/utils";
 
 export default function Folder() {
   const navigation = useNavigation();
@@ -38,12 +32,39 @@ export default function Folder() {
     }
   }, []);
 
+  if (getFilesListQuery.isPending) {
+    return (
+      <View className="flex-1 flex justify-center items-center gap-y-12">
+      <LottieView
+        style={{
+          width: 200,
+          height: 200,
+          backgroundColor: "transparent",
+        }}
+        source={require("~/assets/lottie/foldersLoading.json")}
+        autoPlay
+        loop
+      />
+      <Text className="font-bold text-xl">Loading</Text>
+    </View>
+    );
+  }
+
+  if (getFilesListQuery.isError) {
+    return (
+      <View>
+        <Text>Error</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={{ paddingBottom: insets.bottom }} className="flex-1">
       <Stack.Screen
         options={{
           headerShown: true,
-          headerTitle: geTitle(selectedFolderPathList),
+          animation: "fade",
+          headerTitle: getFolderTitle(selectedFolderPathList),
           headerTitleAlign: "center",
           headerTitleStyle: {
             fontSize: 14,

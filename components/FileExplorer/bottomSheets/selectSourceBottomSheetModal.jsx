@@ -4,9 +4,9 @@ import { Text } from "~/components/ui/text";
 import { BottomSheetModal, BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "@react-navigation/native";
-import ImageSelector from "./imageSelector";
+import ImageSelector from "../imageSelector";
 import { File } from "~/lib/icons";
-import CreateFolder from "./createFolder";
+import CreateFolder from "../createFolder";
 
 const SelectSourceBottomSheetModal = forwardRef((props, ref) => {
   const snapPoints = useMemo(() => ["30%"], []);

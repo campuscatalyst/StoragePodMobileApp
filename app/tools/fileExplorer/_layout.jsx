@@ -2,9 +2,9 @@ import { View } from "react-native";
 import { useRef, useCallback, useState } from "react";
 import { Stack } from "expo-router";
 import FileUploadProgressBottomSheet from "~/components/FileExplorer/fileUploadProgress";
-import SelectSourceBottomSheetModal from "~/components/FileExplorer/selectSourceBottomSheetModal";
+import SelectSourceBottomSheetModal from "~/components/FileExplorer/bottomSheets/selectSourceBottomSheetModal";
 import Fab from "~/components/FileExplorer/fab";
-import CreateFolderModal from "~/components/FileExplorer/createFolderModal";
+import CreateFolderModal from "~/components/FileExplorer/modals/createFolderModal";
 
 
 export default function FileExplorerLayout() {
@@ -49,6 +49,7 @@ export default function FileExplorerLayout() {
       <Stack
         screenOptions={{
           headerShown: false,
+          animation: "fade"
         }}
       >
         <Stack.Screen name="index" />

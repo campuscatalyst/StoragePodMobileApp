@@ -5,6 +5,7 @@ export default function ToolsLayout() {
     <Stack
       screenOptions={{
         headerShown: false,
+        animation: "fade"
       }}
     >
       <Stack.Screen name="index" />

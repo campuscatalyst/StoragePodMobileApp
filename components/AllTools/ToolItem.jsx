@@ -21,7 +21,7 @@ const getImage = (id) => {
 
 export default function ToolItem({ tool }) {
   return (
-    <Pressable className="bg-card p-4 rounded-3xl h-48 w-full flex flex-row justify-between relative" onPress={() => router.push("/tools/fileExplorer")}>
+    <Pressable className="bg-card shadow-sm p-4 rounded-3xl h-48 w-full flex flex-row justify-between relative" onPress={() => router.push("/tools/fileExplorer")}>
       <View className="w-2/3 flex gap-y-4">
         <Text className="font-bold text-xl">{tool.title}</Text>
         <Text className="text-sm">{tool.subtitle}</Text>

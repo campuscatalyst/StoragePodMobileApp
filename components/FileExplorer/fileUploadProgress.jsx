@@ -4,7 +4,7 @@ import { Text } from "~/components/ui/text";
 import { BottomSheetModal, BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "@react-navigation/native";
-import { useFileUploadStore } from "~/lib/store/fileUploadStore";
+import { useFileExplorerStore } from "~/lib/store/fileExplorerStore";
 import axios from "axios";
 import { baseURl } from "~/lib/constants";
 import { X } from "~/lib/icons";
@@ -18,8 +18,8 @@ const getPath = (data) => {
 
 const FileUploadProgressBottomSheet = forwardRef((props, ref) => {
   const snapPoints = useMemo(() => ["50%"], []);
-  const images = useFileUploadStore((state) => state.images);
-  const selectedFolderPathList = useNavigationStore((state) => state.selectedFolderPathList); 
+  const images = useFileExplorerStore((state) => state.images);
+  const selectedFolderPathList = useNavigationStore((state) => state.selectedFolderPathList);
   const qc = useQueryClient();
 
   const insets = useSafeAreaInsets();

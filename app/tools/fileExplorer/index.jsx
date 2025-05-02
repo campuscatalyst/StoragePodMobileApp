@@ -20,7 +20,7 @@ export default function Index() {
         paddingTop: insets.top,
       }}
     >
-      <View className="p-4 flex-1 relative">
+      <View className="flex-1 relative">
         <Main />
       </View>
     </View>
