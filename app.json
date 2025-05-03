@@ -18,9 +18,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.smadabat.StoragePod",
-      "permissions": [
-        "android.permission.RECORD_AUDIO"
-      ]
+      "permissions": ["android.permission.RECORD_AUDIO"]
     },
     "web": {
       "bundler": "metro",
@@ -43,7 +41,8 @@
         {
           "photosPermission": "The app accesses your photos to upload to your storage pod"
         }
-      ]
+      ],
+      "expo-build-properties"
     ],
     "experiments": {
       "typedRoutes": true

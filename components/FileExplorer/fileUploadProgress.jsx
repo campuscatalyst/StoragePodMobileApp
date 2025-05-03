@@ -43,7 +43,7 @@ const FileUploadProgressBottomSheet = forwardRef((props, ref) => {
 
       formData.append("path", path ? `${path}` : "/");
 
-      await axios.post(`${baseURl}/files`, formData, {
+      await axios.post(`${baseURl}/files/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
