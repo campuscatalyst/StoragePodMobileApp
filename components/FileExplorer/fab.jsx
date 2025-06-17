@@ -8,8 +8,12 @@ export default function Fab({ openSheet }) {
   };
 
   return (
-    <View className="absolute bottom-12 right-4">
-      <Pressable className="flex flex-row items-center gap-x-2 bg-primary p-5 rounded-2xl" onPress={toggleFab}>
+    <View style={{
+      position: "absolute",
+      right: 20,
+      bottom: 70
+    }}>
+      <Pressable className="flex flex-row items-center gap-x-2 bg-primary p-6 rounded-2xl" onPress={toggleFab}>
         <View>
           <Plus color={"white"} size={16} />
         </View>

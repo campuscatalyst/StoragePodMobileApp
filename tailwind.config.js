@@ -62,6 +62,9 @@ module.exports = {
       borderWidth: {
         hairline: hairlineWidth(),
       },
+      fontFamily: {
+        bn: ['BN'],
+      },
     },
   },
   plugins: [],

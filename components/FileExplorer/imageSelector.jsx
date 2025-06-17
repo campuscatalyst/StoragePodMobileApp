@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
 import { Pressable, Alert } from "react-native";
 import React from "react";
 import * as ImagePicker from "expo-image-picker";
-import axios from "axios";
 import { Image } from "~/lib/icons";
-import { baseURl } from "~/lib/constants";
 import { Text } from "~/components/ui/text";
 import { useFileExplorerStore } from "~/lib/store/fileExplorerStore";
 //const remoteFolder = "/srv/dev-disk-by-uuid-09698ee9-3b6f-4504-b43d-d7b527129ac9/Folder1";

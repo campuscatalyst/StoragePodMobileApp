@@ -2,19 +2,23 @@ import { View, Pressable } from "react-native";
 import { Text } from "~/components/ui/text";
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger, ContextMenuShortcut } from "~/components/ui/context-menu";
 import React from "react";
-import { Delete, File } from "~/lib/icons";
+import { Delete, File, Download, Eye } from "~/lib/icons";
 import prettyBytes from "pretty-bytes";
 import dayjs from "dayjs";
 import { useFileExplorerStore } from "~/lib/store/fileExplorerStore";
 
-export default function FileRenderer({ data, theme, insets, setShowDeleteModal }) {
+export default function FileRenderer({ data, theme, insets, setShowDeleteModal, showDownloadModal, setPreviewFile, setShowPreviewModal }) {
   const setSelectedItemToDelete = useFileExplorerStore((state) => state.setSelectedItemToDelete);
+  const setSelectedItemToDeleteSource = useFileExplorerStore((state) => state.setSelectedItemToDeleteSource);
+  const setSelectedItemToDownload = useFileExplorerStore((state) => state.setSelectedItemToDownload);
+  
   const contentInsets = {
     top: insets.top,
     bottom: insets.bottom,
     left: 12,
     right: 12,
   };
+
   return (
     <ContextMenu>
       <ContextMenuTrigger asChild>
@@ -39,7 +43,32 @@ export default function FileRenderer({ data, theme, insets, setShowDeleteModal }
         <ContextMenuItem
           inset
           onPress={() => {
+            //setPreviewFile(data);
+            //setShowPreviewModal(true);
+          }}
+        >
+          <Text className="text-foreground">Preview</Text>
+          <ContextMenuShortcut>
+            <Eye className="text-foreground" size={20} />
+          </ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem
+          inset
+          onPress={() => {
+            setSelectedItemToDownload(data);
+            showDownloadModal(true);
+          }}
+        >
+          <Text className="text-foreground">Download</Text>
+          <ContextMenuShortcut>
+            <Download className="text-foreground" size={20} />
+          </ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem
+          inset
+          onPress={() => {
             setSelectedItemToDelete(data);
+            setSelectedItemToDeleteSource("file");
             setShowDeleteModal(true);
           }}
         >

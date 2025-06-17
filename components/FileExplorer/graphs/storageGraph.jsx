@@ -12,7 +12,7 @@ const CIRCLE_LENGTH = 2 * Math.PI * R;
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-export default function StorageGraph({ progress }) {
+export default function StorageGraph({ progress, rotation="-90" }) {
   const theme = useTheme();
   const progressValue = useSharedValue(0);
   const [displayText, setDisplayText] = useState('0');
@@ -54,7 +54,7 @@ export default function StorageGraph({ progress }) {
           strokeDasharray={CIRCLE_LENGTH}
           strokeWidth={STROKE_WIDTH / 2}
           animatedProps={animatedProps}
-          rotation="-90"
+          rotation={rotation}
           origin={`${SIZE / 2 + STROKE_WIDTH / 2}, ${SIZE / 2 + STROKE_WIDTH / 2}`}
           fill={"transparent"}
         />

@@ -1,10 +1,10 @@
-import { View, Text } from "react-native";
-import React from "react";
+import SafeView from "~/components/SafeView";
+import HomeIndex from "~/components/Home";
 
 export default function Home() {
   return (
-    <View>
-      <Text>home</Text>
-    </View>
+    <SafeView>
+      <HomeIndex />
+    </SafeView>
   );
 }

@@ -9,6 +9,7 @@ export default function ToolsLayout() {
       }}
     >
       <Stack.Screen name="index" />
+      <Stack.Screen name="statistics" />
     </Stack>
   );
 }

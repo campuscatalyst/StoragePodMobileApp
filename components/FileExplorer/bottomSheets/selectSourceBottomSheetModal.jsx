@@ -7,6 +7,7 @@ import { useTheme } from "@react-navigation/native";
 import ImageSelector from "../imageSelector";
 import { File } from "~/lib/icons";
 import CreateFolder from "../createFolder";
+import FileSelector from "../fileSelector";
 
 const SelectSourceBottomSheetModal = forwardRef((props, ref) => {
   const snapPoints = useMemo(() => ["30%"], []);
@@ -29,10 +30,7 @@ const SelectSourceBottomSheetModal = forwardRef((props, ref) => {
     >
       <View className="p-4">
         <ImageSelector closeSheet={props.closeSheet} openFileUploadProgressSheet={props.openFileUploadProgressSheet} />
-        <Pressable className="p-4 flex flex-row gap-x-4 items-center">
-          <File className="text-purple" />
-          <Text>Upload from File browser</Text>
-        </Pressable>
+        <FileSelector closeSheet={props.closeSheet} openFileUploadProgressSheet={props.openFileUploadProgressSheet} />
         <CreateFolder setVisible={props.setVisible} closeSheet={props.closeSheet} />
       </View>
     </BottomSheetModal>
