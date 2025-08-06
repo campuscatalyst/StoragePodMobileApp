@@ -13,7 +13,7 @@ export default function Device({ data, index }) {
   const setSelectedDevice = useNavigationStore((state) => state.setSelectedDevice);
   const setSelecteDomain = useDeviceDiscoveryStore((state) => state.setSelecteDomain);
 
-  const lat = dayjs(data.lastAccessedAt).format(`MMM, HH:MM A`);
+  const lat = dayjs(data.lastAccessedAt).format(`MMM DD, HH:MM A`);
 
   return (
     <Animated.View

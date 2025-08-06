@@ -1,9 +1,10 @@
-import { View, Pressable } from "react-native";
+import { View, Pressable, ActivityIndicator } from "react-native";
 import { Text } from "~/components/ui/text";
 import dayjs from "dayjs";
 import { useGetRecentActivityQuery } from "~/lib/services/queries/getRecentActivityQuery";
-import { File } from "~/lib/icons";
+import { File, CloudAlert } from "~/lib/icons";
 import { router } from "expo-router";
+import { useTheme } from "@react-navigation/native";
 
 const Activity = ({ data }) => {
   /**
@@ -17,8 +18,10 @@ const Activity = ({ data }) => {
     <View className="bg-card p-4 rounded-xl flex flex-row items-center w-full gap-4">
       <File className="text-foreground" size={20} />
       <View className="flex gap-2">
-        <Text>{data?.path?.split("/")?.pop()}</Text>
-        <Text className="font-light text-sm">{dayjs(data?.timestamp).format("MMM DD, hh:mm A")}</Text>
+        <Text numberOfLines={1}>{data?.path?.split("/")?.pop()}</Text>
+        <Text className="font-light text-sm">
+          {dayjs(data?.timestamp).format("MMM DD, hh:mm A")}
+        </Text>
       </View>
     </View>
   );
@@ -26,27 +29,47 @@ const Activity = ({ data }) => {
 
 export default function RecentActivity() {
   const recentActivityQuery = useGetRecentActivityQuery();
+  const theme = useTheme();
 
   if (recentActivityQuery.isPending) {
     return (
-      <View>
-        <Text>Loading</Text>
+      <View className="flex gap-4">
+        <View className="flex flex-row items-center justify-between">
+          <Text className="text-xl font-bold">Recent</Text>
+        </View>
+        <View className="w-full h-64 bg-card flex justify-center items-center rounded-xl">
+          <ActivityIndicator size={"small"} color={theme.colors.primary} />
+        </View>
       </View>
     );
   }
 
   if (recentActivityQuery.isError) {
     return (
-      <View>
-        <Text>Error</Text>
+      <View className="flex gap-4">
+        <View className="flex flex-row items-center justify-between">
+          <Text className="text-xl font-bold">Recent</Text>
+        </View>
+        <View className="w-full h-64 bg-card flex justify-center items-center rounded-xl">
+          <CloudAlert className="text-destructive" size={36} />
+          <Text className="text-center font-bold">
+            Error while fetching the details, retry again.
+          </Text>
+          <Text>If still exists, please reach out to us.</Text>
+      </View>
       </View>
     );
   }
 
   if (!recentActivityQuery.data || !recentActivityQuery.data.length) {
     return (
-      <View>
-        <Text>No data</Text>
+      <View className="flex gap-4">
+        <View className="flex flex-row items-center justify-between">
+          <Text className="text-xl font-bold">Recent</Text>
+        </View>
+        <View className="bg-card flex items-center justify-center w-full h-64 rounded-xl">
+          <Text>No recent files found</Text>
+        </View>
       </View>
     );
   }
@@ -55,7 +78,9 @@ export default function RecentActivity() {
     <View className="rounded-3xl gap-4">
       <View className="flex flex-row items-center justify-between">
         <Text className="text-xl font-bold">Recent</Text>
-        <Pressable onPress={() => router.push("/tools/fileExplorer/recentActivityFull")}>
+        <Pressable
+          onPress={() => router.push("/tools/fileExplorer/recentActivityFull")}
+        >
           <Text className="text-primary font-bold">View all</Text>
         </Pressable>
       </View>

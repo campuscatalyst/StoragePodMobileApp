@@ -1,8 +1,9 @@
 import { View, Pressable } from "react-native";
-import { Text } from "~/components/ui/text";
+import React from "react";
 import { Plus } from "lucide-react-native";
 
-export default function Fab({ openSheet }) {
+
+const Fab = React.memo(({ openSheet }) => {
   const toggleFab = () => {
     openSheet(); //this is to present the sheet.
   };
@@ -20,4 +21,6 @@ export default function Fab({ openSheet }) {
       </Pressable>
     </View>
   );
-}
+});
+
+export default Fab;

@@ -55,13 +55,6 @@
     --shadow-2xl: 2px 2px 10px 4px hsl(240 4% 60% / 0.45);
     --tracking-normal: 0em;
     --spacing: 0.25rem;
-    --success: 155 54% 46%;
-    --success-foreground: 0, 0%, 100%;
-    --offline: 219 13% 60%;
-    --offline-foreground: 0, 0%, 100%;
-    --yellow: 45 100% 51%;
-    --purple: 291 64% 42%;
-    --teal: 174 100% 29%;
   }
 
   .dark:root {
@@ -114,12 +107,5 @@
     --shadow-xl: 2px 2px 10px 4px hsl(0 0% 0% / 0.18),
       2px 8px 10px 3px hsl(0 0% 0% / 0.18);
     --shadow-2xl: 2px 2px 10px 4px hsl(0 0% 0% / 0.45);
-    --success: 151 55% 54%;
-    --success-foreground: 0, 0%, 100%;
-    --offline: 220 10% 49%;
-    --offline-foreground: 0, 0%, 100%;
-    --yellow: 38 100% 70%;
-    --purple: 267, 95%, 76%;
-    --teal: 171 100% 41%;
   }
 }

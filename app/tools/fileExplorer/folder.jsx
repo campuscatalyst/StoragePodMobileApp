@@ -4,7 +4,7 @@ import { useRef, useCallback, useState, useEffect } from "react";
 import { router, Stack, useNavigation } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigationStore } from "~/lib/store";
-import { ChevronLeft } from "~/lib/icons";
+import { ChevronLeft, Search } from "~/lib/icons";
 import { getFolderTitle } from "~/lib/utils";
 import FileUploadProgressBottomSheet from "~/components/FileExplorer/fileUploadProgress";
 import SelectSourceBottomSheetModal from "~/components/FileExplorer/bottomSheets/selectSourceBottomSheetModal";
@@ -13,6 +13,7 @@ import CreateFolderModal from "~/components/FileExplorer/modals/createFolderModa
 import FoldersListMain from "~/components/FileExplorer/foldersListMain";
 import { useTheme } from "@react-navigation/native";
 
+
 export default function Folder() {
   //UTILS
   const navigation = useNavigation();
@@ -20,11 +21,16 @@ export default function Folder() {
   const insets = useSafeAreaInsets();
 
   //GLOBAL STATE
-  const selectedFolderPathList = useNavigationStore((state) => state.selectedFolderPathList);
-  const popFromSelectedFolderPath = useNavigationStore((state) => state.popFromSelectedFolderPath);
+  const selectedFolderPathList = useNavigationStore(
+    (state) => state.selectedFolderPathList
+  );
+  const popFromSelectedFolderPath = useNavigationStore(
+    (state) => state.popFromSelectedFolderPath
+  );
 
   //LOCAL STATE
   const [visible, setVisible] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(false);
 
   //REFS
   const selectSourceRef = useRef(null);
@@ -84,7 +90,11 @@ export default function Folder() {
         openFileUploadProgressSheet={openFileUploadProgressSheet}
         setVisible={setVisible}
       />
-      <FileUploadProgressBottomSheet ref={fileUploadProgress} closeSheet={closeSheet} closeFileUploadProgressSheet={closeFileUploadProgressSheet} />
+      <FileUploadProgressBottomSheet
+        ref={fileUploadProgress}
+        closeSheet={closeSheet}
+        closeFileUploadProgressSheet={closeFileUploadProgressSheet}
+      />
       <Stack.Screen
         options={{
           headerShown: true,
@@ -99,14 +109,30 @@ export default function Folder() {
           },
           headerLeft: ({ onPress, canGoBack }) =>
             canGoBack ? (
-              <TouchableOpacity onPress={() => router.back()} className="flex flex-row gap-x-2 ml-[-8] items-center">
+              <TouchableOpacity
+                onPress={() => router.back()}
+                className="flex flex-row gap-x-2 ml-[-8] items-center"
+              >
                 <ChevronLeft size={20} className={"text-primary"} />
                 <Text className="text-primary">Back</Text>
               </TouchableOpacity>
             ) : null,
+          headerRight: () => {
+            return !showSearchBar && (
+              <TouchableOpacity
+                onPress={() => setShowSearchBar(true)}
+                className="flex flex-row items-center"
+              >
+                <Search size={20} className={"text-primary rotate-90"} />
+              </TouchableOpacity>
+            );
+          },
         }}
       />
-      <FoldersListMain />
+      <FoldersListMain
+        showSearchBar={showSearchBar}
+        setShowSearchBar={setShowSearchBar}
+      />
       <Fab openSheet={openSheet} />
     </View>
   );

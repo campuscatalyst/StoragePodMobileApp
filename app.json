@@ -12,7 +12,9 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.smadabat.StoragePod",
       "infoPlist": {
-        "NSBonjourServices": ["_dlna._tcp"],
+        "NSBonjourServices": [
+          "_dlna._tcp"
+        ],
         "NSLocalNetworkUsageDescription": "Allow StoragePod to discover devices on the local network."
       }
     },
@@ -22,6 +24,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.smadabat.StoragePod",
+      "googleServicesFile": "./google-services.json",
       "permissions": [
         "android.permission.RECORD_AUDIO",
         "android.permission.ACCESS_WIFI_STATE",
@@ -72,7 +75,8 @@
         }
       ],
       "expo-sqlite",
-      "expo-font"
+      "expo-font",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
@@ -85,6 +89,8 @@
         "projectId": "bb6f0db1-3ba6-4cd3-88c1-70ffa9f35cd8"
       }
     },
-    "assetBundlePatterns": ["**/*"]
+    "assetBundlePatterns": [
+      "**/*"
+    ]
   }
 }

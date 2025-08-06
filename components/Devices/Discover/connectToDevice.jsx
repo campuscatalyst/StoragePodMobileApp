@@ -75,11 +75,12 @@ export default function ConnectToDevice({ setIndex, closeSheet, mode }) {
         //JWT token is available, save the token
         //go to the next page and ask the user to provide name for the device to store the device details in the db.
         await saveJWT(result.data?.token);
+        const serialNumber = result.data?.serial_number
 
         const data = {
           ip: selectedDeviceToConnect?.ip, //this can be ip or hostname
           port: selectedDeviceToConnect?.port?.toString() || "8200",
-          givenName: "Main",
+          givenName: serialNumber?.toUpperCase() ?? "MAIN",
           domainName: mode === "local" ? "storagepod.local" : selectedDeviceToConnect?.ip,
           status: "online",
           discoveredAt: dayjs().format(),
@@ -128,7 +129,7 @@ export default function ConnectToDevice({ setIndex, closeSheet, mode }) {
   return (
     <View className="flex-1 p-8 pt-0 flex gap-y-12">
       <View className="flex gap-y-2">
-        <Text className="font-bold text-xl">Connect to Your Device</Text>
+        <Text className="font-bold text-xl">Connect To Your Device</Text>
         <Text className="font-light">Enter the required details to establish a connection.</Text>
       </View>
       <View className="flex-1 gap-y-6 justify-between">

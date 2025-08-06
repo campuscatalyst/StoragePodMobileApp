@@ -1,6 +1,6 @@
 package com.smadabat.StoragePod
 
-import com.storagepod.StoragePackage;
+import com.storagepod.StoragePackage
 
 import android.app.Application
 import android.content.res.Configuration

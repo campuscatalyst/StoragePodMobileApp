@@ -2,7 +2,13 @@
 import "~/global.css";
 
 import { Stack } from "expo-router";
-import { Theme, ThemeProvider, DefaultTheme, DarkTheme, useTheme } from "@react-navigation/native";
+import {
+  Theme,
+  ThemeProvider,
+  DefaultTheme,
+  DarkTheme,
+  useTheme,
+} from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -46,22 +52,22 @@ export default function RootLayout() {
   const [appReady, setAppReady] = useState(false);
 
   const prerequsites = async () => {
-  try {
-    await Font.loadAsync({
-      BN: require("../assets/fonts/BebasNeue-Regular.ttf"),
-      // Add other fonts here
-    });
+    try {
+      await Font.loadAsync({
+        BN: require("../assets/fonts/BebasNeue-Regular.ttf"),
+        // Add other fonts here
+      });
 
-    await initDB();
+      await initDB();
 
-    setAppReady(true);
-  } catch (error) {
-    console.error(error);
-    setError(error);
-  } finally {
-    await SplashScreen.hideAsync();
-  }
-};
+      setAppReady(true);
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    } finally {
+      await SplashScreen.hideAsync();
+    }
+  };
 
   useEffect(() => {
     //this is to initialise the db connection to the sqlite.
@@ -94,7 +100,9 @@ export default function RootLayout() {
           loop
         />
         <View className="flex gap-y-4 items-center">
-          <Text className="font-bold text-xl">Error loading the Application. Reach out to the support.</Text>
+          <Text className="font-bold text-xl">
+            Error loading the Application. Reach out to the support.
+          </Text>
           <Text className="font-bold text-xl">ERR - ERR001</Text>
         </View>
       </View>
@@ -110,7 +118,11 @@ export default function RootLayout() {
       <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
         <GestureHandlerRootView style={{ flex: 1 }}>
           <BottomSheetModalProvider>
-            <StatusBar style={isDarkColorScheme ? "light" : "dark"} animated={true} backgroundColor={theme.colors.background} />
+            <StatusBar
+              style={isDarkColorScheme ? "light" : "dark"}
+              animated={true}
+              backgroundColor={"#ff00ff00"}
+            />
             <SafeAreaProvider>
               <KeyboardProvider>
                 <Stack

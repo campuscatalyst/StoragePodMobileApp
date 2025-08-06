@@ -32,7 +32,7 @@ export default function DeleteStoragePodModal({ visible, setVisible, deleteHandl
         <Text numberOfLines={6} className="text-center">
           Are you sure you want to delete storage pod?
         </Text>
-        <View className="bg-blue-500 p-4 rounded-xl flex flex-row items-center gap-x-2">
+        <View className="bg-primary p-4 rounded-xl flex flex-row items-center gap-x-2">
           <Info className="text-white" />
           <View className="flex-1">
             <Text numberOfLines={6} className="text-left text-white">

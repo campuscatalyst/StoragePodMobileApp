@@ -4,6 +4,8 @@ import Header from "./header";
 import { getGreetingBasedOnTime } from "~/lib/utils";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import Cta from "./cta";
+import SupportFeedback from "./supportFeedback";
+import HomeCarousel from "./homeCarousel";
 
 export default function HomeIndex() {
   return (
@@ -20,6 +22,8 @@ export default function HomeIndex() {
           <Animated.Text entering={FadeInDown.springify().damping(80).stiffness(200).delay(100)} className="text-3xl text-primary font-bold">Pavan</Animated.Text>
         </View>
         <Cta />
+        <HomeCarousel />
+        <SupportFeedback />
       </View>
     </ScrollView>
   );

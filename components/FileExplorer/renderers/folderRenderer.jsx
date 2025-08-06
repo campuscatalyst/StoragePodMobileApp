@@ -1,16 +1,17 @@
 import { View, Pressable } from "react-native";
 import { Text } from "~/components/ui/text";
 import { router } from "expo-router";
-import { Folder, ChevronRight, Delete, Download, FileArchive} from "~/lib/icons";
+import { Folder, ChevronRight, Delete, Download, FileArchive, Pen} from "~/lib/icons";
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger, ContextMenuShortcut } from "~/components/ui/context-menu";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useFileExplorerStore } from "~/lib/store";
 
-export default function sFolderRenderer({ data, theme, pushToSelectedFolderPath, openCompressfolderBottomSheet, setShowDeleteModal }) {
+export default function FolderRenderer({ data, theme, pushToSelectedFolderPath, openCompressfolderBottomSheet, setShowDeleteModal, setRenameItemModalVisible }) {
   const insets = useSafeAreaInsets();
   const setSelectedItemToDelete = useFileExplorerStore((state) => state.setSelectedItemToDelete);
   const setSelectedItemToDeleteSource = useFileExplorerStore((state) => state.setSelectedItemToDeleteSource);
   const setSelectedFolderToCompress = useFileExplorerStore((state) => state.setSelectedFolderToCompress);
+  const setSelectedItemForRename = useFileExplorerStore((state) => state.setSelectedItemForRename);
 
   const contentInsets = {
     top: insets.top,
@@ -40,6 +41,18 @@ export default function sFolderRenderer({ data, theme, pushToSelectedFolderPath,
       </ContextMenuTrigger>
 
       <ContextMenuContent align="start" insets={contentInsets} className="w-64">
+         <ContextMenuItem
+          inset
+          onPress={() => {
+            setRenameItemModalVisible(true);
+            setSelectedItemForRename(data);
+          }}
+        >
+          <Text className="text-foreground">Rename</Text>
+          <ContextMenuShortcut>
+            <Pen className="text-foreground" size={20} />
+          </ContextMenuShortcut>
+        </ContextMenuItem>
         <ContextMenuItem
           inset
           onPress={() => {

@@ -42,3 +42,4 @@ yarn-error.*
 .vscode
 
 app-example
+google-services.json

@@ -2,15 +2,16 @@ import { View, Pressable } from "react-native";
 import { Text } from "~/components/ui/text";
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger, ContextMenuShortcut } from "~/components/ui/context-menu";
 import React from "react";
-import { Delete, File, Download, Eye } from "~/lib/icons";
+import { Delete, File, Download, Eye, Pen } from "~/lib/icons";
 import prettyBytes from "pretty-bytes";
 import dayjs from "dayjs";
 import { useFileExplorerStore } from "~/lib/store/fileExplorerStore";
 
-export default function FileRenderer({ data, theme, insets, setShowDeleteModal, showDownloadModal, setPreviewFile, setShowPreviewModal }) {
+export default function FileRenderer({ data, theme, insets, setShowDeleteModal, showDownloadModal, setPreviewFile, setShowPreviewModal, setRenameItemModalVisible }) {
   const setSelectedItemToDelete = useFileExplorerStore((state) => state.setSelectedItemToDelete);
   const setSelectedItemToDeleteSource = useFileExplorerStore((state) => state.setSelectedItemToDeleteSource);
   const setSelectedItemToDownload = useFileExplorerStore((state) => state.setSelectedItemToDownload);
+  const setSelectedItemForRename = useFileExplorerStore((state) => state.setSelectedItemForRename);
   
   const contentInsets = {
     top: insets.top,
@@ -62,6 +63,18 @@ export default function FileRenderer({ data, theme, insets, setShowDeleteModal, 
           <Text className="text-foreground">Download</Text>
           <ContextMenuShortcut>
             <Download className="text-foreground" size={20} />
+          </ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem
+          inset
+          onPress={() => {
+            setRenameItemModalVisible(true);
+            setSelectedItemForRename(data);
+          }}
+        >
+          <Text className="text-foreground">Rename</Text>
+          <ContextMenuShortcut>
+            <Pen className="text-foreground" size={20} />
           </ContextMenuShortcut>
         </ContextMenuItem>
         <ContextMenuItem
